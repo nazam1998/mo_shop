@@ -13,14 +13,14 @@
           :img-alt="product.name"
           img-top
           tag="article"
-          style="height: 700px"
+          style="height: 100%"
           class="mb-2 p-3"
         >
           <b-card-text>
-            {{ product.description }}
+            {{ product.description.substring(0,8)+"..." }}
           </b-card-text>
 
-          <b-button href="#" variant="primary" class="btn-cart"
+          <b-button href="#" variant="primary" class="btn-cart mt-auto"
             >Add to cart</b-button
           >
         </b-card>
@@ -47,5 +47,6 @@ export default {
 .btn-cart {
   position: relative;
   bottom: 0px;
+  
 }
 </style>

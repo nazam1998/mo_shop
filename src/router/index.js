@@ -11,9 +11,12 @@ const routes = [{
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/profil',
+    name: 'Profil',
+    component: () => import( /* webpackChunkName: "profil" */ '../views/Profil.vue'),
+    meta:{
+      
+    }
   },
   {
     path: '/login',
@@ -34,6 +37,7 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
+  console.log(store.state.auth_token);
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.auth_token) {
       next({
