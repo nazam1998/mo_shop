@@ -14,8 +14,16 @@ const routes = [{
     path: '/profil',
     name: 'Profil',
     component: () => import( /* webpackChunkName: "profil" */ '../views/Profil.vue'),
-    meta:{
-      
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/myshop',
+    name: 'MyShop',
+    component: () => import( /* webpackChunkName: "myshop" */ '../views/MyShop.vue'),
+    meta: {
+      requiresAuth: true
     }
   },
   {
@@ -39,7 +47,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log(store.state.auth_token);
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.auth_token) {
+    if (!store.state.auth_token) {
       next({
         name: 'Login',
         query: {

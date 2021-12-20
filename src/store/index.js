@@ -11,7 +11,8 @@ export default new Vuex.Store({
     shops: shop,
     currentUser: null,
     auth_token: null,
-    message: null
+    message: null,
+    myShop: null,
   },
   mutations: {
     setShops: function (state, value) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setCurrentUser: function (state, value) {
       state.currentUser = value.data;
+    },
+    setMyShop: function (state, value) {
+      state.myShop = value.data;
     },
     logout: function (state) {
       state.auth_token = null;
@@ -54,6 +58,7 @@ export default new Vuex.Store({
         commit('setToken', resp.data.data.token);
         console.log(resp.data.data.token);
         dispatch('getUser');
+        dispatch('getMyShop');
       }).catch((err) => {
         console.log(err);
       });
@@ -97,6 +102,19 @@ export default new Vuex.Store({
       }).then((response) => {
         console.log(response.data);
         commit('setCurrentUser', response.data)
+      });
+    },
+    async getMyShop({
+      commit,
+      state
+    }) {
+      await axios.get('https://api-moshop.molengeek.pro/api/v1/shop', {
+        headers: {
+          Authorization: "Bearer " + state.auth_token
+        }
+      }).then((response) => {
+        console.log(response.data);
+        commit('setMyShop', response.data)
       });
     }
   },
