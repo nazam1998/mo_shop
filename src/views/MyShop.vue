@@ -1,9 +1,9 @@
 <template>
   <b-container class="shop">
-    <h2 class="text-center">{{ myShop.name }}</h2>
+    <h2 class="text-center" v-if="myShop">{{ myShop.name }}</h2>
     <AddProduct />
     <h3 class="my-3">Products</h3>
-    <b-row>
+    <b-row v-if="myShop">
       <b-col v-for="product in myShop.products" :key="product.id" cols="4">
         <b-card
           :title="product.name"
@@ -28,6 +28,9 @@
             variant="warning"
             >Edit Product</b-btn
           >
+          <b-btn @click="deleteProduct(product.id)" variant="danger"
+            >Delete Product</b-btn
+          >
           <edit-product :product="product" />
         </b-card>
       </b-col>
@@ -48,6 +51,11 @@ export default {
   },
   computed: {
     ...mapState(["myShop"]),
+  },
+  methods: {
+    deleteProduct: function (product_id) {
+      this.$store.dispatch("deleteProduct", product_id);
+    },
   },
   mounted() {
     this.$store.dispatch("getMyShop");

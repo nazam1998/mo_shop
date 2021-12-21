@@ -125,7 +125,7 @@ export default new Vuex.Store({
     }, value) {
       let data = value[0];
       let product_id = value[1];
-      axios.put('https://api-moshop.molengeek.pro/api/v1/products/' + product_id, data, {
+      axios.put('https://api-moshop.molengeek.pro/api/v1/product/' + product_id, data, {
         headers: {
           Authorization: "Bearer " + state.auth_token
         }
@@ -142,7 +142,23 @@ export default new Vuex.Store({
     }, value) {
       let data = value[0];
       let product_id = value[1];
-      axios.put('https://api-moshop.molengeek.pro/api/v1/products/' + product_id + '/picture', data, {
+      axios.put('https://api-moshop.molengeek.pro/api/v1/product/' + product_id + '/picture', data, {
+        headers: {
+          Authorization: "Bearer " + state.auth_token
+        }
+      }).then((
+        resp
+      ) => {
+        console.log(resp);
+        dispatch('getMyShop')
+      })
+    },
+    deleteProduct({
+      state,
+      dispatch
+    }, value) {
+
+      axios.delete('https://api-moshop.molengeek.pro/api/v1/product/' + value, {
         headers: {
           Authorization: "Bearer " + state.auth_token
         }
@@ -162,7 +178,6 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((response) => {
-        console.log(response.data);
         commit('setMyShop', response.data)
       });
     }

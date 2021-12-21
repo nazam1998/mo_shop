@@ -5,7 +5,12 @@
     <h3 class="my-3">Products</h3>
 
     <b-row>
-      <b-col v-for="product in shopMG.products" :key="product.id" cols="4">
+      <b-col
+        v-for="product in shopMG.products"
+        :key="product.id"
+        cols="4"
+        class="my-3"
+      >
         <b-card
           :title="product.name"
           :sub-title="product.price + '€'"
@@ -17,7 +22,7 @@
           class="mb-2 p-3"
         >
           <b-card-text>
-            {{ product.description.substring(0,8)+"..." }}
+            {{ product.description.substring(0, 8) + "..." }}
           </b-card-text>
 
           <b-button href="#" variant="primary" class="btn-cart mt-auto"
@@ -47,6 +52,5 @@ export default {
 .btn-cart {
   position: relative;
   bottom: 0px;
-  
 }
 </style>

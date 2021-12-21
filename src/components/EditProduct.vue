@@ -52,7 +52,7 @@
           Last Name is invalid
         </b-form-invalid-feedback>
       </b-form-group>
-      <b-form-file @change="uploadFile" v-model="cover" class="my-3"></b-form-file>
+      <b-form-file v-model="cover" class="my-3"></b-form-file>
       <template #modal-footer>
         <b-button size="sm" variant="success" @click="editProduct()">
           Edit Product
@@ -91,13 +91,13 @@ export default {
         this.price = value;
       }
     },
-  },
-  methods: {
-    uploadFile: function () {
+    cover: function (value) {
       let formData = new FormData();
-      formData.append("cover", this.cover);
+      formData.append("cover", value);
       this.$store.dispatch("editProductPicture", [formData, this.product.id]);
     },
+  },
+  methods: {
     editProduct: function () {
       let formData = new FormData();
       formData.append("name", this.nameValue);
