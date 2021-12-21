@@ -5,6 +5,8 @@
       <router-link v-if="!auth_token" to="/login">Login | </router-link>
       <router-link v-else to="/profil">My Profil | </router-link>
       <router-link v-if="auth_token" to="/myshop">My Shop | </router-link>
+      <router-link v-if="auth_token" to="/mycart">Panier | </router-link>
+      <router-link v-if="auth_token" to="/myorders">My Orders | </router-link>
       <router-link v-if="!auth_token" to="/register">Register</router-link>
       <button
         v-else

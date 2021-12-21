@@ -13,10 +13,15 @@ export default new Vuex.Store({
     auth_token: null,
     message: null,
     myShop: null,
+    myCart: null,
+    orders: null,
   },
   mutations: {
     setShops: function (state, value) {
       state.shops = value;
+    },
+    setOrders: function (state, value) {
+      state.orders = value.data;
     },
     setToken: function (state, value) {
       state.auth_token = value
@@ -26,6 +31,9 @@ export default new Vuex.Store({
     },
     setMyShop: function (state, value) {
       state.myShop = value.data;
+    },
+    setMyCart: function (state, value) {
+      state.myCart = value.data;
     },
     logout: function (state) {
       state.auth_token = null;
@@ -50,6 +58,23 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
+    getOrders: function ({
+      commit,
+      state
+    }) {
+      axios
+        .get("https://api-moshop.molengeek.pro/api/v1/orders", {
+          headers: {
+            Authorization: "Bearer " + state.auth_token
+          }
+        })
+        .then((resp) => {
+          commit('setOrders', resp.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     login: function ({
       commit,
       dispatch
@@ -59,6 +84,7 @@ export default new Vuex.Store({
         console.log(resp.data.data.token);
         dispatch('getUser');
         dispatch('getMyShop');
+        dispatch('getMyCart');
       }).catch((err) => {
         console.log(err);
       });
@@ -81,6 +107,7 @@ export default new Vuex.Store({
       state,
       dispatch
     }, value) {
+      console.log(value);
       axios.put('https://api-moshop.molengeek.pro/api/v1/user', value, {
         headers: {
           Authorization: "Bearer " + state.auth_token
@@ -102,6 +129,36 @@ export default new Vuex.Store({
       }).then((response) => {
         console.log(response.data);
         commit('setCurrentUser', response.data)
+      });
+    },
+    addToCart({
+      state,
+      dispatch
+    }, value) {
+      axios.post('https://api-moshop.molengeek.pro/api/v1/cart', value, {
+        headers: {
+          Authorization: "Bearer " + state.auth_token
+        }
+      }).then((
+        resp
+      ) => {
+        console.log(resp);
+        dispatch('getMyShop')
+      })
+    },
+    confirmOrder: function ({
+      dispatch,
+      state
+    }) {
+      axios.post('https://api-moshop.molengeek.pro/api/v1/buy', {}, {
+        headers: {
+          Authorization: "Bearer " + state.auth_token
+        }
+      }).then((response) => {
+        dispatch('getMyCart');
+        console.log(response);
+      }).catch((err) => {
+        console.log(err);
       });
     },
     addProduct({
@@ -180,7 +237,19 @@ export default new Vuex.Store({
       }).then((response) => {
         commit('setMyShop', response.data)
       });
-    }
+    },
+    async getMyCart({
+      commit,
+      state
+    }) {
+      await axios.get('https://api-moshop.molengeek.pro/api/v1/cart', {
+        headers: {
+          Authorization: "Bearer " + state.auth_token
+        }
+      }).then((response) => {
+        commit('setMyCart', response.data)
+      });
+    },
   },
   modules: {
 

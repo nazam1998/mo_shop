@@ -27,6 +27,22 @@ const routes = [{
     }
   },
   {
+    path: '/myorders',
+    name: 'MyOrders',
+    component: () => import( /* webpackChunkName: "myorders" */ '../views/MyOrders.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/mycart',
+    name: 'Panier',
+    component: () => import( /* webpackChunkName: "mycart" */ '../views/Panier.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue')
