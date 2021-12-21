@@ -1,5 +1,5 @@
 <template>
-  <div class="shop">
+  <b-container class="shop">
     <h2 class="text-center">{{ myShop.name }}</h2>
     <AddProduct />
     <h3 class="my-3">Products</h3>
@@ -22,25 +22,37 @@
           <b-button href="#" variant="primary" class="btn-cart mt-auto"
             >Add to cart</b-button
           >
+
+          <b-btn
+            @click="$bvModal.show('bv-modal-' + product.id)"
+            variant="warning"
+            >Edit Product</b-btn
+          >
+          <edit-product :product="product" />
         </b-card>
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
 // import axios from "axios";
 import { mapState } from "vuex";
 import AddProduct from "@/components/AddProduct.vue";
+import EditProduct from "@/components/EditProduct.vue";
 export default {
   name: "Shop",
   components: {
     AddProduct,
+    EditProduct,
   },
   computed: {
     ...mapState(["myShop"]),
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getMyShop");
+    // console.log(this.myShop);
+  },
 };
 </script>
 

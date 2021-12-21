@@ -1,9 +1,7 @@
 <template>
   <div>
-    <b-btn v-b-modal.modal-1 variant="primary">Add Product</b-btn>
-
-    <b-modal id="modal-1" title="BootstrapVue">
-      <p class="my-4">Add a new Product</p>
+    <b-modal :id="'bv-modal-' + product.id" title="BootstrapVue">
+      <p class="my-4">Edit {{ product.name }}</p>
       <b-form-group
         id="fieldset-1"
         label="Enter product name"
@@ -54,10 +52,10 @@
           Last Name is invalid
         </b-form-invalid-feedback>
       </b-form-group>
-      <b-form-file v-model="cover" class="my-3"></b-form-file>
+      <b-form-file @change="uploadFile" v-model="cover" class="my-3"></b-form-file>
       <template #modal-footer>
-        <b-button size="sm" variant="success" @click="addProduct()">
-          Add Product
+        <b-button size="sm" variant="success" @click="editProduct()">
+          Edit Product
         </b-button>
       </template>
     </b-modal>
@@ -66,6 +64,13 @@
 <script>
 export default {
   name: "AddProduct",
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
+
   data() {
     return {
       nameValue: null,
@@ -75,6 +80,11 @@ export default {
       msg: [],
     };
   },
+  mounted() {
+    this.nameValue = this.product.name;
+    this.descValue = this.product.description;
+    this.price = this.product.price;
+  },
   watch: {
     price: function (value) {
       if (value >= 0) {
@@ -83,19 +93,18 @@ export default {
     },
   },
   methods: {
-    addProduct: function () {
+    uploadFile: function () {
+      let formData = new FormData();
+      formData.append("cover", this.cover);
+      this.$store.dispatch("editProductPicture", [formData, this.product.id]);
+    },
+    editProduct: function () {
       let formData = new FormData();
       formData.append("name", this.nameValue);
       formData.append("description", this.descValue);
       formData.append("price", this.price);
-      formData.append("cover", this.cover);
-      console.log(formData);
-      this.$store.dispatch("addProduct", formData);
-      this.nameValue = null;
-      this.descValue = null;
-      this.cover = null;
-      this.price = null;
-      this.$bvModal.hide('modal-1')
+      this.$store.dispatch("editProduct", [formData, this.product.id]);
+      this.$bvModal.hide("bv-modal-" + this.product.id);
     },
   },
 };

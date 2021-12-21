@@ -6,7 +6,14 @@
       <router-link v-else to="/profil">My Profil |</router-link>
       <router-link v-if="auth_token" to="/myshop">My Shop</router-link>
       <router-link v-if="!auth_token" to="/register">Register</router-link>
-      <button v-else @click="$store.commit('logout')">Log out</button>
+      <button
+        v-else
+        @click="
+          $store.commit('logout');
+          $router.push('/');"
+      >
+        Log out
+      </button>
     </div>
     <router-view />
   </div>
