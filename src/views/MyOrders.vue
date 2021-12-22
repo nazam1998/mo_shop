@@ -1,13 +1,13 @@
 <template>
   <b-container>
-    <b-row class="my-5 justify-content-between text-left">
+    <b-row class="mt-5 justify-content-between text-left">
       <b-col cols="1">ID</b-col>
       <b-col cols="6">Date</b-col>
       <b-col cols="3">Price</b-col>
       <b-col cols="2">Action</b-col>
     </b-row>
     <b-row
-      class="justify-content-between text-left p-3"
+      class="justify-content-between text-left py-3 px-1"
       tag="li"
       v-for="order in orders"
       :key="order.id"

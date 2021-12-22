@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
-import shop from '@/shop.json'
 import axios from 'axios';
 import createPersistedState from "vuex-persistedstate";
 
@@ -8,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    shops: shop,
+    shops: null,
     currentUser: null,
     auth_token: null,
     message: null,
@@ -41,18 +40,23 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    shopMG: function (state) {
+    shops: function (state) {
       return state.shops.data
     }
   },
   actions: {
     getShops: function ({
-      commit
+      commit,
+      state
     }) {
       axios
-        .get("https://api-moshop.molengeek.pro/api/v1/mg/shop")
+        .get("https://api-moshop.molengeek.pro/api/v1/shops", {
+          headers: {
+            Authorization: "Bearer " + state.auth_token
+          }
+        })
         .then((resp) => {
-          commit('setShops', resp.data);
+          commit('setShops', resp.data.data);
         })
         .catch((err) => {
           console.log(err);
