@@ -17,7 +17,7 @@
           class="mb-2 p-3 card-product"
         >
           <b-card-text>
-            {{ product.description.substring(0, 8) + "..." }}
+            {{ product.description.substring(0, 50) + "..." }}
           </b-card-text>
           <b-row>
 

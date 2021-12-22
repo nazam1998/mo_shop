@@ -25,6 +25,7 @@
 
           <b-btn
             @click="$bvModal.show('bv-modal-' + product.id)"
+            class="m-4"
             variant="warning"
             >Edit Product</b-btn
           >
@@ -59,7 +60,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getMyShop");
-    // console.log(this.myShop);
   },
 };
 </script>
