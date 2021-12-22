@@ -17,7 +17,9 @@
         <b-col cols="6">{{ new Date(order.date).toString() }}</b-col>
         <b-col cols="3">{{ order.price }}</b-col>
         <b-col cols="2"
-          ><router-link to=""><b-btn>View Details</b-btn></router-link></b-col
+          ><router-link :to="{ name: 'Order', params: { orderid: order.id } }"
+            ><b-btn>View Details</b-btn></router-link
+          ></b-col
         >
       </b-row>
     </ul>

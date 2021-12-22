@@ -1,13 +1,65 @@
 <template>
-    <div>
-        
-    </div>
+  <b-container v-if="order">
+    <h3>Your order on <br />{{ new Date(order.date).toString() }}</h3>
+    <b-row class="my-5 justify-content-between text-left">
+      <b-col cols="1">ID</b-col>
+      <b-col cols="4">Product Name</b-col>
+      <b-col cols="1">Quantity</b-col>
+      <b-col cols="1">Unit Price</b-col>
+      <b-col cols="1">Total Price</b-col>
+    </b-row>
+    <b-row
+      class="my-5 justify-content-between text-left"
+      tag="li"
+      v-for="item in order_items"
+      :key="item.id"
+    >
+      <b-col cols="1">{{ item.id }}</b-col>
+      <b-col cols="4">{{ item.product.name }}</b-col>
+      <b-col cols="1">{{ item.quantity }}</b-col>
+      <b-col cols="1">{{ item.product.price }}€</b-col>
+      <b-col cols="1">{{
+        (item.product.price * item.quantity).toFixed(2)
+      }}€</b-col>
+    </b-row>
+    <h3>Total Price: {{order.price}}</h3>
+  </b-container>
 </template>
 <script>
+import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
-    
-}
+  name: "Order",
+  data() {
+    return {
+      order: null,
+      order_items: null,
+    };
+  },
+  props: {
+    orderid: {
+      type: [String, Number],
+      required: true,
+    },
+  },
+  mounted() {
+    let auth_token = this.auth_token;
+    axios
+      .get("https://api-moshop.molengeek.pro/api/v1/order/" + this.orderid, {
+        headers: {
+          Authorization: "Bearer " + auth_token,
+        },
+      })
+      .then((resp) => {
+        this.order = resp.data.data.order;
+        this.order_items = resp.data.data.order_items;
+      });
+  },
+  computed: {
+    ...mapState(["auth_token"]),
+  },
+};
 </script>
 <style scoped>
-    
 </style>

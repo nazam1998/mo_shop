@@ -32,7 +32,7 @@ export default {
   name: "Product",
   data() {
     return {
-      currentQuantity: 0,
+      currentQuantity: 1,
     };
   },
   props: {
@@ -47,12 +47,12 @@ export default {
       let formData = new FormData();
       formData.append("product", this.product.id);
       formData.append("quantity", this.currentQuantity);
-      this.$store.dispatch('addToCart', formData);
+      this.$store.dispatch("addToCart", formData);
     },
   },
   watch: {
     currentQuantity: function (value) {
-      if (value >= 0) {
+      if (value >= 1) {
         this.price = value;
       }
     },

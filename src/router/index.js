@@ -35,6 +35,15 @@ const routes = [{
     }
   },
   {
+    path: '/order/:orderid',
+    name: 'Order',
+    component: () => import( /* webpackChunkName: "order", */ '../views/Order.vue'),
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/mycart',
     name: 'Panier',
     component: () => import( /* webpackChunkName: "mycart" */ '../views/Panier.vue'),

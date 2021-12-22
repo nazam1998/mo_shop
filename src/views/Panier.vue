@@ -1,35 +1,39 @@
 <template>
-  <b-container>
+  <b-container v-if="myCart">
     <h2>{{ fullname }}'s Cart</h2>
-    <b-btn variant="success" @click="confirm">Confirm Order</b-btn>
-    <b-row>
-      <b-row v-if="myCart">
-        <b-col
-          v-for="product in myCart"
-          :key="product.id"
-          cols="4"
-          class="my-3"
-        >
-          <b-card
-            :title="product.product.name"
-            :sub-title="product.product.price + '€'"
-            :img-src="
-              'https://api-moshop.molengeek.pro' + product.product.cover_path
-            "
-            :img-alt="product.product.name"
-            img-top
-            tag="article"
-            style="height: 100%; width: 400px"
-            class="mb-2 p-3"
-          >
-            <b-card-text>
-              {{ product.product.description.substring(0, 8) + "..." }}
-            </b-card-text>
-            <b-card-text> Quantity: {{ product.quantity }} </b-card-text>
-          </b-card>
-        </b-col>
-      </b-row>
+
+    <b-row class="justify-content-between mt-5">
+      <b-col cols="3"></b-col>
+      <b-col cols="3">Product Name</b-col>
+      <b-col cols="1">Quantity</b-col>
+      <b-col cols="1">Unit Price</b-col>
+      <b-col cols="1">Total Price</b-col>
     </b-row>
+    <ul>
+      <b-row
+        tag="li"
+        v-for="item in myCart"
+        :key="item.id"
+        class="align-items-center p-2 justify-content-between"
+      >
+        <b-col cols="3"
+          ><img
+            class="img-fluid"
+            :src="'https://api-moshop.molengeek.pro' + item.product.cover_path"
+            alt=""
+        /></b-col>
+        <b-col cols="3">{{ item.product.name }}</b-col>
+        <b-col cols="1">{{ item.quantity }}</b-col>
+        <b-col cols="1">{{ item.product.price }}€</b-col>
+        <b-col cols="1"
+          >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
+        >
+      </b-row>
+    </ul>
+    <h3>Total Price: {{ totalPrice }}€</h3>
+    <b-btn variant="success" v-if="myCart.length != 0" @click="confirm"
+      >Confirm Order</b-btn
+    >
   </b-container>
 </template>
 <script>
@@ -55,9 +59,20 @@ export default {
         this.currentUser.profile.firstname
       );
     },
+
+    totalPrice: function () {
+      let totalPrice = 0;
+      this.myCart.forEach((elem) => {
+        totalPrice += elem.product.price * elem.quantity;
+      });
+      return totalPrice;
+    },
     ...mapState(["myCart", "currentUser"]),
   },
 };
 </script>
 <style scoped>
+ul li {
+  border: 1px solid grey;
+}
 </style>
