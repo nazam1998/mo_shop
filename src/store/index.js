@@ -37,6 +37,9 @@ export default new Vuex.Store({
     logout: function (state) {
       state.auth_token = null;
       state.currentUser = null;
+    },
+    emptyCart: function (state) {
+      state.myCart = null
     }
   },
   getters: {
@@ -152,6 +155,7 @@ export default new Vuex.Store({
     },
     confirmOrder: function ({
       dispatch,
+      commit,
       state
     }) {
       axios.post('https://api-moshop.molengeek.pro/api/v1/buy', {}, {
@@ -160,6 +164,7 @@ export default new Vuex.Store({
         }
       }).then((response) => {
         dispatch('getMyCart');
+        commit('emptyCart')
         console.log(response);
       }).catch((err) => {
         console.log(err);

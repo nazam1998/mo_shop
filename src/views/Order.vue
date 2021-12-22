@@ -1,6 +1,6 @@
 <template>
   <b-container v-if="order">
-    <h3>Your order on <br />{{ orderDate }}</h3>
+    <h3>Your order on {{ orderDate }}</h3>
     <b-row class="my-5 justify-content-between text-left">
       <b-col cols="1">ID</b-col>
       <b-col cols="1"></b-col>

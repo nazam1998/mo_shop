@@ -10,9 +10,11 @@
           :img-src="'https://api-moshop.molengeek.pro' + product.cover_path"
           :img-alt="product.name"
           img-top
+          img-width="100%"
+          img-height="265px"
           tag="article"
           style="height: 100%"
-          class="mb-2 p-3"
+          class="mb-2 p-3 card-product"
         >
           <b-card-text>
             {{ product.description.substring(0, 8) + "..." }}
@@ -59,5 +61,5 @@ export default {
   },
 };
 </script>
-<style lang="">
+<style scoped>
 </style>

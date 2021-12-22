@@ -30,10 +30,16 @@
         >
       </b-row>
     </ul>
-    <h3>Total Price: {{ totalPrice }}€</h3>
-    <b-btn variant="success" v-if="myCart.length != 0" @click="confirm"
-      >Confirm Order</b-btn
-    >
+    <div class="mx-auto text-center">
+      <h3>Total Price: {{ totalPrice }}€</h3>
+      <b-btn
+        variant="success"
+        class="mx-auto"
+        v-if="myCart.length != 0"
+        @click="confirm"
+        >Confirm Order</b-btn
+      >
+    </div>
   </b-container>
 </template>
 <script>

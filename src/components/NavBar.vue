@@ -11,17 +11,17 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item
-          ><router-link v-if="auth_token" to="/myshop"
+          ><router-link class="text-white" v-if="auth_token" to="/myshop"
             >My Shop</router-link
           ></b-nav-item
         >
         <b-nav-item
-          ><router-link v-if="auth_token" to="/mycart"
-            >Panier</router-link
+          ><router-link class="text-white" v-if="auth_token" to="/mycart"
+            >Cart</router-link
           ></b-nav-item
         >
         <b-nav-item
-          ><router-link v-if="auth_token" to="/myorders"
+          ><router-link class="text-white" v-if="auth_token" to="/myorders"
             >My Orders</router-link
           ></b-nav-item
         >
@@ -30,12 +30,12 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item
-          ><router-link v-if="!auth_token" to="/login"
+          ><router-link class="text-white" v-if="!auth_token" to="/login"
             >Login</router-link
           ></b-nav-item
         >
         <b-nav-item
-          ><router-link v-if="!auth_token" to="/register"
+          ><router-link class="text-white" v-if="!auth_token" to="/register"
             >Register</router-link
           ></b-nav-item
         >
@@ -45,15 +45,14 @@
             <em>{{ currentUser.profile.firstname }}</em>
           </template>
           <b-dropdown-item
-            ><router-link v-if="auth_token" to="/profil"
+            ><router-link class="text-dark" v-if="auth_token" to="/profil"
               >My Profil</router-link
             ></b-dropdown-item
           >
           <b-dropdown-item
             @click="
               $store.commit('logout');
-              $router.push('/');
-            "
+              $router.push('/');"
             >Log Out</b-dropdown-item
           >
         </b-nav-item-dropdown>
@@ -71,7 +70,7 @@ export default {
 };
 </script>
 <style scoped>
-a {
+a.nav-link {
   color: white;
 }
 </style>

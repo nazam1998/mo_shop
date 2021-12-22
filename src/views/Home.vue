@@ -1,14 +1,11 @@
 <template>
   <div class="home">
     <b-container v-if="shops" class="my-5">
-      <b-row>
-        <li class="col-5" v-for="shop in shops" :key="shop.id">
-          <router-link
-            class="text-dark"
+      <b-row class="justify-content-between">
+        <router-link class="col-5 border rounded m-2 p-2 text-dark text-center" v-for="shop in shops" :key="shop.id"
             :to="{ name: 'Shop', params: { shopid: shop.id } }"
-            >{{ shop.name }}</router-link
-          >
-        </li>
+            >{{ shop.name }}
+        </router-link>
       </b-row>
     </b-container>
   </div>
