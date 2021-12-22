@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row class="mt-5 justify-content-between text-left">
+    <b-row class="mt-5 mb-2 justify-content-between text-left">
       <b-col cols="1">ID</b-col>
       <b-col cols="6">Date</b-col>
       <b-col cols="3">Price</b-col>
@@ -12,9 +12,9 @@
       v-for="order in orders"
       :key="order.id"
     >
-      <b-col cols="1">{{ order.id }}</b-col>
-      <b-col cols="6">{{ orderDate(order.date) }}</b-col>
-      <b-col cols="3">{{ order.price }}</b-col>
+      <b-col cols="1" class="border-right">{{ order.id }}</b-col>
+      <b-col cols="6" class="border-right">{{ orderDate(order.date) }}</b-col>
+      <b-col cols="3" class="border-right">{{ order.price }}</b-col>
       <b-col cols="2"
         ><router-link :to="{ name: 'Order', params: { orderid: order.id } }"
           ><b-btn>View Details</b-btn></router-link
