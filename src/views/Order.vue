@@ -1,6 +1,6 @@
 <template>
   <b-container v-if="order">
-    <h3>Your order on <br />{{ new Date(order.date).toString() }}</h3>
+    <h3>Your order on <br />{{ orderDate }}</h3>
     <b-row class="my-5 justify-content-between text-left">
       <b-col cols="1">ID</b-col>
       <b-col cols="4">Product Name</b-col>
@@ -18,11 +18,11 @@
       <b-col cols="4">{{ item.product.name }}</b-col>
       <b-col cols="1">{{ item.quantity }}</b-col>
       <b-col cols="1">{{ item.product.price }}€</b-col>
-      <b-col cols="1">{{
-        (item.product.price * item.quantity).toFixed(2)
-      }}€</b-col>
+      <b-col cols="1"
+        >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
+      >
     </b-row>
-    <h3>Total Price: {{order.price}}</h3>
+    <h3>Total Price: {{ order.price }}</h3>
   </b-container>
 </template>
 <script>
@@ -57,6 +57,28 @@ export default {
       });
   },
   computed: {
+    orderDate: function () {
+      let formatdate = new Date(this.order.date);
+      let year = formatdate.getFullYear();
+      let month = formatdate.getMonth();
+      let day = formatdate.getDate();
+      let hour = formatdate.getHours();
+      let minutes = formatdate.getMinutes();
+      let seconds = formatdate.getSeconds();
+      return (
+        day +
+        "/" +
+        month +
+        "/" +
+        year +
+        " " +
+        hour +
+        ":" +
+        minutes +
+        ":" +
+        seconds
+      );
+    },
     ...mapState(["auth_token"]),
   },
 };
