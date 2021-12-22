@@ -8,13 +8,19 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/shops/:shopid',
     name: 'Shop',
     component: () => import( /* webpackChunkName: "shop"*/ '../views/Shop.vue'),
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/profil',

@@ -1,8 +1,8 @@
 <template>
-  <b-container class="shop" v-if="shop">
+  <b-container class="shop my-5" v-if="shop">
     <h2 class="text-center">{{ shop.name }}</h2>
 
-    <h3 class="my-3">Products</h3>
+    <h3 class="my-5 text-center">Products</h3>
 
     <b-row>
       <product
