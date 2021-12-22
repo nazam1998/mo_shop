@@ -7,7 +7,7 @@
       <b-col cols="2">Action</b-col>
     </b-row>
     <b-row
-      class="my-5 justify-content-between text-left"
+      class="justify-content-between text-left p-3"
       tag="li"
       v-for="order in orders"
       :key="order.id"
@@ -60,5 +60,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+li {
+  border: 1px solid;
+}
 </style>

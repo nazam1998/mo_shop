@@ -3,22 +3,29 @@
     <h3>Your order on <br />{{ orderDate }}</h3>
     <b-row class="my-5 justify-content-between text-left">
       <b-col cols="1">ID</b-col>
+      <b-col cols="1"></b-col>
       <b-col cols="4">Product Name</b-col>
       <b-col cols="1">Quantity</b-col>
-      <b-col cols="1">Unit Price</b-col>
-      <b-col cols="1">Total Price</b-col>
+      <b-col cols="2">Unit Price</b-col>
+      <b-col cols="2">Total Price</b-col>
     </b-row>
     <b-row
-      class="my-5 justify-content-between text-left"
+      class="my-5 justify-content-between text-left align-items-center"
       tag="li"
       v-for="item in order_items"
       :key="item.id"
     >
       <b-col cols="1">{{ item.id }}</b-col>
+      <b-col cols="1"
+        ><img
+          class="img-fluid"
+          :src="'https://api-moshop.molengeek.pro' + item.product.cover_path"
+          alt=""
+      /></b-col>
       <b-col cols="4">{{ item.product.name }}</b-col>
       <b-col cols="1">{{ item.quantity }}</b-col>
-      <b-col cols="1">{{ item.product.price }}€</b-col>
-      <b-col cols="1"
+      <b-col cols="2">{{ item.product.price }}€</b-col>
+      <b-col cols="2"
         >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
       >
     </b-row>
