@@ -15,9 +15,10 @@
           tag="article"
           style="height: 100%"
           class="mb-2 p-3 card-product"
+          
         >
           <b-card-text>
-            {{ product.description.substring(0, 50) + "..." + product.id }}
+            {{ product.description.substring(0, 50) + "..."}} <router-link :to="{name:'Product', params:{productid:product.id}}">Read more</router-link>
           </b-card-text>
           <b-row>
 

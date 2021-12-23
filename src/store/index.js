@@ -38,6 +38,9 @@ export default new Vuex.Store({
       state.auth_token = null;
       state.currentUser = null;
     },
+    setMessage: function (state, value) {
+      state.message = value
+    },
     emptyCart: function (state) {
       state.myCart = null
     }
@@ -92,6 +95,7 @@ export default new Vuex.Store({
         dispatch('getUser');
         dispatch('getMyShop');
         dispatch('getMyCart');
+
       }).catch((err) => {
         console.log(err);
       });
