@@ -1,6 +1,6 @@
 <template>
   <b-container v-if="order">
-    <h3>Your order on {{ orderDate }}</h3>
+    <h3 class="text-center">Your order on {{ orderDate }}</h3>
     <b-row class="my-5 justify-content-between text-left border-bottom pb-4">
       <b-col cols="1">ID</b-col>
       <b-col cols="1"></b-col>
@@ -78,7 +78,7 @@ export default {
         month +
         "/" +
         year +
-        " " +
+        " at " +
         hour +
         ":" +
         minutes +
