@@ -1,7 +1,7 @@
 <template>
   <b-container v-if="order">
     <h3>Your order on {{ orderDate }}</h3>
-    <b-row class="my-5 justify-content-between text-left">
+    <b-row class="my-5 justify-content-between text-left border-bottom pb-4">
       <b-col cols="1">ID</b-col>
       <b-col cols="1"></b-col>
       <b-col cols="4">Product</b-col>
@@ -29,7 +29,7 @@
         >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
       >
     </b-row>
-    <h3>Total Price: {{ order.price }}</h3>
+    <h3 class="text-center">Total Order Price: {{ order.price }}€</h3>
   </b-container>
 </template>
 <script>
