@@ -166,10 +166,9 @@ export default new Vuex.Store({
         headers: {
           Authorization: "Bearer " + state.auth_token
         }
-      }).then((response) => {
+      }).then(() => {
         dispatch('getMyCart');
         commit('emptyCart')
-        console.log(response);
       }).catch((err) => {
         console.log(err);
       });

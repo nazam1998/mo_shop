@@ -1,45 +1,49 @@
 <template>
   <b-container v-if="myCart">
+    <div v-if="myCart.length != 0">
     <h2>{{ fullname }}'s Cart</h2>
-
-    <b-row class="justify-content-between mt-5">
-      <b-col cols="3"></b-col>
-      <b-col cols="3">Product Name</b-col>
-      <b-col cols="1">Quantity</b-col>
-      <b-col cols="1">Unit Price</b-col>
-      <b-col cols="1">Total Price</b-col>
-    </b-row>
-    <ul>
-      <b-row
-        tag="li"
-        v-for="item in myCart"
-        :key="item.id"
-        class="align-items-center p-2 justify-content-between"
-      >
-        <b-col cols="3"
-          ><img
-            class="img-fluid"
-            :src="'https://api-moshop.molengeek.pro' + item.product.cover_path"
-            alt=""
-        /></b-col>
-        <b-col cols="3">{{ item.product.name }}</b-col>
-        <b-col cols="1">{{ item.quantity }}</b-col>
-        <b-col cols="1">{{ item.product.price }}€</b-col>
-        <b-col cols="1"
-          >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
-        >
+      <b-row class="justify-content-between mt-5">
+        <b-col cols="3"></b-col>
+        <b-col cols="3">Product Name</b-col>
+        <b-col cols="1">Quantity</b-col>
+        <b-col cols="1">Unit Price</b-col>
+        <b-col cols="1">Total Price</b-col>
       </b-row>
-    </ul>
-    <div class="mx-auto text-center">
-      <h3>Total Price: {{ totalPrice }}€</h3>
-      <b-btn
-        variant="success"
-        class="mx-auto"
-        v-if="myCart.length != 0"
-        @click="confirm"
-        >Confirm Order</b-btn
-      >
+      <ul>
+        <b-row
+          tag="li"
+          v-for="item in myCart"
+          :key="item.id"
+          class="align-items-center p-2 justify-content-between"
+        >
+          <b-col cols="3"
+            ><img
+              class="img-fluid"
+              :src="
+                'https://api-moshop.molengeek.pro' + item.product.cover_path
+              "
+              alt=""
+          /></b-col>
+          <b-col cols="3">{{ item.product.name }}</b-col>
+          <b-col cols="1">{{ item.quantity }}</b-col>
+          <b-col cols="1">{{ item.product.price }}€</b-col>
+          <b-col cols="1"
+            >{{ (item.product.price * item.quantity).toFixed(2) }}€</b-col
+          >
+        </b-row>
+      </ul>
+      <div class="mx-auto text-center">
+        <h3>Total Price: {{ totalPrice }}€</h3>
+        <b-btn
+          variant="success"
+          class="mx-auto"
+          v-if="myCart.length != 0"
+          @click="confirm"
+          >Confirm Order</b-btn
+        >
+      </div>
     </div>
+    <h3 v-else class="text-center">Your cart is empty</h3>
   </b-container>
 </template>
 <script>

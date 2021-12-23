@@ -16,16 +16,12 @@
           class="mb-2 p-3"
         >
           <b-card-text>
-            {{ product.description.substring(0, 8) + "..." }}
+            {{ product.description.substring(0, 50) + "..." }}
           </b-card-text>
-
-          <b-button href="#" variant="primary" class="btn-cart mt-auto"
-            >Add to cart</b-button
-          >
 
           <b-btn
             @click="$bvModal.show('bv-modal-' + product.id)"
-            class="m-4"
+            class="mx-2"
             variant="warning"
             >Edit Product</b-btn
           >
