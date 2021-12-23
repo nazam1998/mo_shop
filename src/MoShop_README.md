@@ -65,6 +65,7 @@ Panier et commandes
 - Créer la vue du panier
 - Possibilité d'ajouter des articles dans le panier
 - ~~Retirer un article du panier~~
+- confirmer commande panier
 - Voir une liste des commandes passées
 - Afficher une commande
 

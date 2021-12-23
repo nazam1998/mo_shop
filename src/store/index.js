@@ -104,7 +104,10 @@ export default new Vuex.Store({
         console.log(err);
       });
     },
-    editPicture: function ({state, dispatch}, value) {
+    editPicture: function ({
+      state,
+      dispatch
+    }, value) {
       axios.put('https://api-moshop.molengeek.pro/api/v1/user/picture', value, {
         headers: {
           Authorization: "Bearer " + state.auth_token
@@ -114,7 +117,10 @@ export default new Vuex.Store({
         dispatch('getUser');
       })
     },
-    editProfile: function ({state, dispatch}, value) {
+    editProfile: function ({
+      state,
+      dispatch
+    }, value) {
       axios.put('https://api-moshop.molengeek.pro/api/v1/user', value, {
         headers: {
           Authorization: "Bearer " + state.auth_token
