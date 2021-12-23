@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex';
 import axios from 'axios';
 import createPersistedState from "vuex-persistedstate";
+import router from '../router'
 
 Vue.use(Vuex)
 
@@ -91,10 +92,13 @@ export default new Vuex.Store({
     }, value) {
       axios.post('https://api-moshop.molengeek.pro/api/v1/login', value).then((resp) => {
         commit('setToken', resp.data.data.token);
-        console.log(resp.data.data.token);
         dispatch('getUser');
         dispatch('getMyShop');
         dispatch('getMyCart');
+
+        router.push({
+          name: "Home"
+        });
 
       }).catch((err) => {
         console.log(err);
@@ -138,7 +142,6 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((response) => {
-        console.log(response.data);
         commit('setCurrentUser', response.data)
       });
     },

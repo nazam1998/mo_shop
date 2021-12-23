@@ -74,12 +74,18 @@ const routes = [{
   {
     path: '/login',
     name: 'Login',
-    component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue')
+    component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import( /* webpackChunkName: "register" */ '../views/Register.vue')
+    component: () => import( /* webpackChunkName: "register" */ '../views/Register.vue'),
+    meta: {
+      requiresGuest: true
+    }
   },
 
 ]
@@ -94,15 +100,20 @@ router.beforeEach((to, from, next) => {
     if (!store.state.auth_token) {
       next({
         name: 'Login',
-        query: {
-          redirect: to.fullPath
-        }
       });
     } else {
       next()
     }
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
+    if (store.state.auth_token) {
+      return next({
+        name: 'Home'
+      })
+    } else {
+      next()
+    }
   } else {
-    next();
+    next()
   }
 })
 export default router

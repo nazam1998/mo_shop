@@ -39,7 +39,7 @@
             >Register</router-link
           ></b-nav-item
         >
-        <b-nav-item-dropdown right v-if="auth_token">
+        <b-nav-item-dropdown right v-if="auth_token && currentUser">
           <!-- Using 'button-content' slot -->
           <template #button-content>
             <em>{{ currentUser.profile.firstname }}</em>
@@ -52,7 +52,7 @@
           <b-dropdown-item
             @click="
               $store.commit('logout');
-              $router.push('/');"
+              $router.push({name:'Login'});"
             >Log Out</b-dropdown-item
           >
         </b-nav-item-dropdown>

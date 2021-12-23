@@ -41,7 +41,6 @@ export default {
       };
 
       this.$store.dispatch("login", data);
-      this.$router.push("/");
     },
   },
 };

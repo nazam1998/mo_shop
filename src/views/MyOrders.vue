@@ -14,7 +14,7 @@
     >
       <b-col cols="1" class="border-right">{{ order.id }}</b-col>
       <b-col cols="6" class="border-right">{{ orderDate(order.date) }}</b-col>
-      <b-col cols="3" class="border-right">{{ order.price }}</b-col>
+      <b-col cols="3" class="border-right">{{ order.price }}€</b-col>
       <b-col cols="2"
         ><router-link :to="{ name: 'Order', params: { orderid: order.id } }"
           ><b-btn>View Details</b-btn></router-link

@@ -1,6 +1,5 @@
 <template>
   <b-container v-if="myCart">
-    <div v-if="myCart.length != 0">
     <h2>{{ fullname }}'s Cart</h2>
       <b-row class="justify-content-between mt-5">
         <b-col cols="3"></b-col>
@@ -42,8 +41,7 @@
           >Confirm Order</b-btn
         >
       </div>
-    </div>
-    <h3 v-else class="text-center">Your cart is empty</h3>
+
   </b-container>
 </template>
 <script>
