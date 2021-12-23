@@ -127,6 +127,7 @@ export default {
         formData.append("firstname", this.firstNameValue);
         formData.append("lastname", this.lastNameValue);
         this.$store.dispatch("editProfile", formData);
+        this.editMode = !this.editMode
       }
     },
   },

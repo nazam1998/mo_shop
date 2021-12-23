@@ -15,6 +15,7 @@
       valid-feedback="Thank you!"
     >
       <b-form-input
+        @keyup.enter="login"
         type="password"
         id="input-1"
         v-model="passwordValue"

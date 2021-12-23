@@ -22,7 +22,7 @@
           </b-card-text>
           <b-row>
 
-          <b-form-input class="w-50" id="input-1" v-model="currentQuantity" type="number" trim></b-form-input>
+          <b-form-input class="w-50" id="input-1" v-model="currentQuantity" type="number" trim min="1"></b-form-input>
           <b-button href="#" variant="primary" class="btn-cart mt-auto mx-2" @click="addCart"
             >Add to cart</b-button
           >

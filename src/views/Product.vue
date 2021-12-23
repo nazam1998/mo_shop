@@ -1,7 +1,7 @@
 <template>
   <b-container v-if="product">
     <h3
-    v-if="message"
+      v-if="message"
       class="text-center my-5"
       :class="{
         'text-success': message.status == 200,
@@ -29,6 +29,7 @@
             v-model="currentQuantity"
             type="number"
             trim
+            min="1"
           ></b-form-input>
           <b-button
             href="#"
@@ -85,7 +86,10 @@ export default {
   watch: {
     currentQuantity: function (value) {
       if (value >= 1) {
+        this.message = "";
         this.price = value;
+      } else {
+        this.message = "You must enter at least one quantity";
       }
     },
   },
