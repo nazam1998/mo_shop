@@ -4,8 +4,14 @@
     <AddProduct />
     <h3 class="my-3">Products</h3>
     <b-row v-if="myShop">
-      <b-col v-for="product in myShop.products" :key="product.id" cols="4">
-        <div class="product-action">
+      <b-col
+        v-for="(product, index) in myShop.products"
+        :key="product.id"
+        cols="4"
+        @mouseenter="setShowAction(index)"
+        @mouseleave="setShowAction(index)"
+      >
+        <div class="product-action" v-if="showActions[index]">
           <b-btn
             @click="$bvModal.show('bv-modal-' + product.id)"
             class="my-2 mr-2"
@@ -38,7 +44,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 import { mapState } from "vuex";
 import AddProduct from "@/components/AddProduct.vue";
 import EditProduct from "@/components/EditProduct.vue";
@@ -48,6 +53,11 @@ export default {
     AddProduct,
     EditProduct,
   },
+  data() {
+    return {
+      showActions: [],
+    };
+  },
   computed: {
     ...mapState(["myShop"]),
   },
@@ -55,9 +65,20 @@ export default {
     deleteProduct: function (product_id) {
       this.$store.dispatch("deleteProduct", product_id);
     },
+    setShowAction: function (index) {
+      console.log(this.showActions[index]);
+      let showActions = [...this.showActions];
+      showActions[index] = !showActions[index];
+      this.showActions = [...showActions];
+    },
   },
-  mounted() {
-    this.$store.dispatch("getMyShop");
+  async mounted() {
+    await this.$store.dispatch("getMyShop");
+    this.showActions = [];
+    let showActions = this.showActions;
+    this.myShop.products.forEach(function () {
+      showActions.push(false);
+    });
   },
 };
 </script>
