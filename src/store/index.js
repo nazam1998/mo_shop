@@ -152,9 +152,8 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((
-        resp
+
       ) => {
-        console.log(resp);
         dispatch('getMyShop')
       })
     },
@@ -183,9 +182,8 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((
-        resp
+
       ) => {
-        console.log(resp);
         dispatch('getMyShop')
       })
     },
@@ -200,9 +198,8 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((
-        resp
+
       ) => {
-        console.log(resp);
         dispatch('getMyShop')
       })
     },
@@ -217,9 +214,8 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((
-        resp
+
       ) => {
-        console.log(resp);
         dispatch('getMyShop')
       })
     },
@@ -233,9 +229,8 @@ export default new Vuex.Store({
           Authorization: "Bearer " + state.auth_token
         }
       }).then((
-        resp
+
       ) => {
-        console.log(resp);
         dispatch('getMyShop')
       })
     },

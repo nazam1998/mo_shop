@@ -22,7 +22,7 @@
         trim
       ></b-form-input>
     </b-form-group>
-    <b-button @click="login">Login</b-button>
+    <b-button @click="login" class="mt-3">Login</b-button>
   </b-container>
 </template>
 <script>

@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     addCart: function () {
-      console.log(this.currentQuantity);
       let formData = new FormData();
       formData.append("product", this.product.id);
       formData.append("quantity", this.currentQuantity);
